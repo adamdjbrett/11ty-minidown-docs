@@ -1,0 +1,29 @@
+{
+  "name": "11-minidown-docs",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve",
+    "clean": "rm -rf _site",
+    "dev": "eleventy --serve",
+    "verify": "npm run build && npm ls @11ty/eleventy"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@11ty/eleventy": "3.1.2",
+    "@11ty/eleventy-img": "6.0.4",
+    "@11ty/eleventy-navigation": "1.0.5",
+    "@11ty/eleventy-plugin-rss": "2.0.4",
+    "@11ty/eleventy-plugin-syntaxhighlight": "5.0.2"
+  },
+  "dependencies": {
+    "luxon": "3.7.2"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="{{ lang or 'en' }}">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  {% if author %}
+      {% for person in author | asArray %}
+  <meta name="author" content="{{ person }}" />
+      {% endfor %}
+  {% endif %}
+  {% if page.date %}
+  <meta name="dcterms.date" content="{{ page.date | htmlDateString }}" />
+  {% endif %}
+  <title>{% if titlePrefix %}{{ titlePrefix }} - {% endif %}{{ title or site.title }}</title>
+  <link rel="stylesheet" href="{{ frameworkCss or '/frameworks/sakura/sakura-default.css' }}" />
+  <link rel="stylesheet" href="/css/minidown.css" />
+</head>
+<body>
+<main>
+<nav id="TOC" role="doc-toc" aria-label="Left menu">
+  <h2 class="menu-title">Menu</h2>
+  <ul class="site-links">
+    <li><a href="/"{% if page.url == '/' %} class="active"{% endif %}>Home</a></li>
+    {% for doc in collections.docs %}
+    <li><a href="{{ doc.url }}"{% if page.url == doc.url %} class="active"{% endif %}>{{ doc.data.title }}</a></li>
+    {% endfor %}
+  </ul>
+  {% if toc and toc.length %}
+  <h2 class="menu-title">On This Page</h2>
+  <ul class="page-links">
+    {% for item in toc %}
+    <li><a href="#{{ item.id }}">{{ item.label }}</a></li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</nav>
+{% if title %}
+<header id="title-block-header">
+  <h1 class="title">{{ title }}</h1>
+  {% if subtitle %}
+  <p class="subtitle">{{ subtitle }}</p>
+  {% endif %}
+  {% if author %}
+      {% for person in author | asArray %}
+  <p class="author">{{ person }}</p>
+      {% endfor %}
+  {% endif %}
+  {% if page.date %}
+  <p class="date"><time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time></p>
+  {% endif %}
+</header>
+{% endif %}
+<article>
+{{ content | safe }}
+</article>
+</main>
+</body>
+</html>
